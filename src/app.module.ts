@@ -45,6 +45,22 @@ import { Partner } from './partners/partner.entity';
         entities: [User, ServiceOffering, Project, Testimonial, ThemeSettings, HeroSection, HeroSlide, ProcessStep, WhyChooseUs, SiteSettings, NavbarMenu, Page, Partner],
         synchronize: config.get<boolean>('DATABASE_SYNCHRONIZE', false),
         migrationsRun: config.get<boolean>('DATABASE_MIGRATIONS_RUN', false),
+        // Connection pool configuration - critical for preventing 503 errors
+        extra: {
+          connectionLimit: 10, // Max connections in pool (adjust based on cPanel limits)
+          waitForConnections: true,
+          queueLimit: 0,
+          connectTimeout: 60000, // 60 seconds
+          acquireTimeout: 60000,
+        },
+        // Retry logic for failed connections
+        retryAttempts: 3,
+        retryDelay: 3000,
+        // Auto-reconnect on connection loss
+        autoLoadEntities: true,
+        keepConnectionAlive: true,
+        // Logging for debugging (disable in production)
+        logging: config.get<boolean>('DATABASE_LOGGING', false),
       }),
     }),
     UsersModule,

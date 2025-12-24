@@ -20,6 +20,33 @@ let AppController = class AppController {
     getHello() {
         return this.appService.getHello();
     }
+    healthCheck() {
+        return {
+            status: 'ok',
+            timestamp: new Date().toISOString(),
+            uptime: process.uptime(),
+            memory: process.memoryUsage(),
+            environment: process.env.NODE_ENV || 'development',
+        };
+    }
+    async databaseCheck() {
+        try {
+            await this.appService.checkDatabase();
+            return {
+                status: 'ok',
+                database: 'connected',
+                timestamp: new Date().toISOString(),
+            };
+        }
+        catch (error) {
+            return {
+                status: 'error',
+                database: 'disconnected',
+                error: error.message,
+                timestamp: new Date().toISOString(),
+            };
+        }
+    }
 };
 exports.AppController = AppController;
 __decorate([
@@ -28,6 +55,18 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", String)
 ], AppController.prototype, "getHello", null);
+__decorate([
+    (0, common_1.Get)('health'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], AppController.prototype, "healthCheck", null);
+__decorate([
+    (0, common_1.Get)('health/db'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "databaseCheck", null);
 exports.AppController = AppController = __decorate([
     (0, common_1.Controller)(),
     __metadata("design:paramtypes", [app_service_1.AppService])
