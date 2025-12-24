@@ -25,6 +25,7 @@ const site_settings_module_1 = require("./site-settings/site-settings.module");
 const navbar_module_1 = require("./navbar/navbar.module");
 const pages_module_1 = require("./pages/pages.module");
 const partners_module_1 = require("./partners/partners.module");
+const team_module_1 = require("./team/team.module");
 const user_entity_1 = require("./users/user.entity");
 const service_offering_entity_1 = require("./services/service-offering.entity");
 const project_entity_1 = require("./projects/project.entity");
@@ -38,6 +39,7 @@ const site_settings_entity_1 = require("./site-settings/site-settings.entity");
 const navbar_menu_entity_1 = require("./navbar/navbar-menu.entity");
 const page_entity_1 = require("./pages/page.entity");
 const partner_entity_1 = require("./partners/partner.entity");
+const team_member_entity_1 = require("./team/team-member.entity");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -54,7 +56,7 @@ exports.AppModule = AppModule = __decorate([
                     username: config.get('DATABASE_USER', 'root'),
                     password: config.get('DATABASE_PASSWORD', ''),
                     database: config.get('DATABASE_NAME', 'metasoftinfo'),
-                    entities: [user_entity_1.User, service_offering_entity_1.ServiceOffering, project_entity_1.Project, testimonial_entity_1.Testimonial, theme_settings_entity_1.ThemeSettings, hero_section_entity_1.HeroSection, hero_slide_entity_1.HeroSlide, process_step_entity_1.ProcessStep, why_choose_us_entity_1.WhyChooseUs, site_settings_entity_1.SiteSettings, navbar_menu_entity_1.NavbarMenu, page_entity_1.Page, partner_entity_1.Partner],
+                    entities: [user_entity_1.User, service_offering_entity_1.ServiceOffering, project_entity_1.Project, testimonial_entity_1.Testimonial, theme_settings_entity_1.ThemeSettings, hero_section_entity_1.HeroSection, hero_slide_entity_1.HeroSlide, process_step_entity_1.ProcessStep, why_choose_us_entity_1.WhyChooseUs, site_settings_entity_1.SiteSettings, navbar_menu_entity_1.NavbarMenu, page_entity_1.Page, partner_entity_1.Partner, team_member_entity_1.TeamMember],
                     synchronize: config.get('DATABASE_SYNCHRONIZE', false),
                     migrationsRun: config.get('DATABASE_MIGRATIONS_RUN', false),
                     extra: {
@@ -84,6 +86,7 @@ exports.AppModule = AppModule = __decorate([
             navbar_module_1.NavbarModule,
             pages_module_1.PagesModule,
             partners_module_1.PartnersModule,
+            team_module_1.TeamModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
