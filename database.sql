@@ -27,7 +27,9 @@ CREATE TABLE `hero_section` (
   `title` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL,
   `subtitle` varchar(1000) COLLATE utf8mb4_unicode_ci NOT NULL,
   `primaryCta` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `primaryCtaLink` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '/contact',
   `secondaryCta` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `secondaryCtaLink` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '/contact',
   `stat1Value` int NOT NULL DEFAULT '120',
   `stat1Label` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `stat2Value` int NOT NULL DEFAULT '18',
@@ -46,7 +48,7 @@ CREATE TABLE `hero_section` (
 
 LOCK TABLES `hero_section` WRITE;
 /*!40000 ALTER TABLE `hero_section` DISABLE KEYS */;
-INSERT INTO `hero_section` VALUES ('3bb85a67-1349-457d-84ae-2d94adbb9524','Scale Your Dev Team With Top Talent in 4 Weeks','We architect, design, and deliver world-class digital products.','Start Your Project','Schedule a Call',120,'Projects Shipped',18,'Years Experience',98,'Client Satisfaction','2025-12-20 11:07:01.297162',NULL);
+INSERT INTO `hero_section` VALUES ('3bb85a67-1349-457d-84ae-2d94adbb9524','Scale Your Dev Team With Top Talent in 4 Weeks','We architect, design, and deliver world-class digital products.','Start Your Project','/contact','Schedule a Call','/contact',120,'Projects Shipped',18,'Years Experience',98,'Client Satisfaction','2025-12-20 11:07:01.297162',NULL);
 /*!40000 ALTER TABLE `hero_section` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -500,4 +502,53 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
+--
+-- Table structure for table `contact_submissions`
+--
+
+DROP TABLE IF EXISTS `contact_submissions`;
+CREATE TABLE `contact_submissions` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `phone` varchar(50) DEFAULT NULL,
+  `company` varchar(255) DEFAULT NULL,
+  `message` text NOT NULL,
+  `status` varchar(50) NOT NULL DEFAULT 'new',
+  `createdAt` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+  PRIMARY KEY (`id`),
+  KEY `idx_status` (`status`),
+  KEY `idx_created` (`createdAt`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Table structure for table `contact_settings`
+--
+
+DROP TABLE IF EXISTS `contact_settings`;
+CREATE TABLE `contact_settings` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) NOT NULL DEFAULT 'info@metasoftinfo.com',
+  `phone` varchar(50) NOT NULL DEFAULT '+1 (234) 567-890',
+  `addressLine1` varchar(255) NOT NULL DEFAULT '123 Business St, Suite 100',
+  `addressLine2` varchar(255) NOT NULL DEFAULT 'San Francisco, CA 94107',
+  `businessHours1` varchar(255) NOT NULL DEFAULT 'Monday - Friday: 9:00 AM - 6:00 PM',
+  `businessHours2` varchar(255) NOT NULL DEFAULT 'Saturday: 10:00 AM - 4:00 PM',
+  `businessHours3` varchar(255) NOT NULL DEFAULT 'Sunday: Closed',
+  `heroTitle` varchar(500) NOT NULL DEFAULT 'Let us Build Something Great Together',
+  `heroSubtitle` varchar(1000) DEFAULT NULL,
+  `sectionTitle` varchar(255) NOT NULL DEFAULT 'Get In Touch',
+  `sectionDescription` varchar(1000) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `contact_settings`
+--
+
+LOCK TABLES `contact_settings` WRITE;
+INSERT INTO `contact_settings` VALUES (1,'info@metasoftinfo.com','+1 (234) 567-890','123 Business St, Suite 100','San Francisco, CA 94107','Monday - Friday: 9:00 AM - 6:00 PM','Saturday: 10:00 AM - 4:00 PM','Sunday: Closed','Let us Build Something Great Together','Ready to transform your ideas into reality? Get in touch with our team and let us discuss your project.','Get In Touch','Have a question or want to work together? Fill out the form or reach out directly using the information below.');
+UNLOCK TABLES;
+
 -- Dump completed on 2025-12-24 10:36:53
+

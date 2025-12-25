@@ -16,7 +16,9 @@ let HeroSection = class HeroSection {
     title;
     subtitle;
     primaryCta;
+    primaryCtaLink;
     secondaryCta;
+    secondaryCtaLink;
     stat1Value;
     stat1Label;
     stat2Value;
@@ -44,9 +46,17 @@ __decorate([
     __metadata("design:type", String)
 ], HeroSection.prototype, "primaryCta", void 0);
 __decorate([
+    (0, typeorm_1.Column)({ type: 'varchar', length: 255, default: '/contact' }),
+    __metadata("design:type", String)
+], HeroSection.prototype, "primaryCtaLink", void 0);
+__decorate([
     (0, typeorm_1.Column)({ type: 'varchar', length: 100 }),
     __metadata("design:type", String)
 ], HeroSection.prototype, "secondaryCta", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'varchar', length: 255, default: '/contact' }),
+    __metadata("design:type", String)
+], HeroSection.prototype, "secondaryCtaLink", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'int', default: 120 }),
     __metadata("design:type", Number)

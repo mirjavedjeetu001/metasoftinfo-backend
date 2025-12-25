@@ -17,6 +17,7 @@ import { NavbarModule } from './navbar/navbar.module';
 import { PagesModule } from './pages/pages.module';
 import { PartnersModule } from './partners/partners.module';
 import { TeamModule } from './team/team.module';
+import { ContactModule } from './contact/contact.module';
 import { User } from './users/user.entity';
 import { ServiceOffering } from './services/service-offering.entity';
 import { Project } from './projects/project.entity';
@@ -31,6 +32,8 @@ import { NavbarMenu } from './navbar/navbar-menu.entity';
 import { Page } from './pages/page.entity';
 import { Partner } from './partners/partner.entity';
 import { TeamMember } from './team/team-member.entity';
+import { ContactSubmission } from './contact/contact-submission.entity';
+import { ContactSettings } from './contact/contact-settings.entity';
 
 @Module({
   imports: [
@@ -44,7 +47,7 @@ import { TeamMember } from './team/team-member.entity';
         username: config.get<string>('DATABASE_USER', 'root'),
         password: config.get<string>('DATABASE_PASSWORD', ''),
         database: config.get<string>('DATABASE_NAME', 'metasoftinfo'),
-        entities: [User, ServiceOffering, Project, Testimonial, ThemeSettings, HeroSection, HeroSlide, ProcessStep, WhyChooseUs, SiteSettings, NavbarMenu, Page, Partner, TeamMember],
+        entities: [User, ServiceOffering, Project, Testimonial, ThemeSettings, HeroSection, HeroSlide, ProcessStep, WhyChooseUs, SiteSettings, NavbarMenu, Page, Partner, TeamMember, ContactSubmission, ContactSettings],
         synchronize: config.get<boolean>('DATABASE_SYNCHRONIZE', false),
         migrationsRun: config.get<boolean>('DATABASE_MIGRATIONS_RUN', false),
         // Connection pool configuration - critical for preventing 503 errors
@@ -79,6 +82,7 @@ import { TeamMember } from './team/team-member.entity';
     PagesModule,
     PartnersModule,
     TeamModule,
+    ContactModule,
   ],
   controllers: [AppController],
   providers: [AppService],

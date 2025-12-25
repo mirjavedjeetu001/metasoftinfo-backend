@@ -3,7 +3,9 @@ export declare class HeroSection {
     title: string;
     subtitle: string;
     primaryCta: string;
+    primaryCtaLink: string;
     secondaryCta: string;
+    secondaryCtaLink: string;
     stat1Value: number;
     stat1Label: string;
     stat2Value: number;

@@ -14,8 +14,14 @@ export class HeroSection {
   @Column({ type: 'varchar', length: 100 })
   primaryCta: string;
 
+  @Column({ type: 'varchar', length: 255, default: '/contact' })
+  primaryCtaLink: string;
+
   @Column({ type: 'varchar', length: 100 })
   secondaryCta: string;
+
+  @Column({ type: 'varchar', length: 255, default: '/contact' })
+  secondaryCtaLink: string;
 
   @Column({ type: 'int', default: 120 })
   stat1Value: number;
